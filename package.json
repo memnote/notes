@@ -1,0 +1,23 @@
+{
+  "name": "bprof-notes-data",
+  "version": "1.0.0",
+  "description": "Ez a repo szolgál adattal, egy serverless weboldalnak, aminek egyetlen célja, hogy innen kiolvasva a jegyzeteket / posztokat, mások tanulmányait segítse az **Üzemmérnök informatikus** (BME) szakon.",
+  "dependencies": {
+    "gray-matter": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErikSzabo/bprof-notes-data.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ErikSzabo/bprof-notes-data/issues"
+  },
+  "homepage": "https://github.com/ErikSzabo/bprof-notes-data#readme"
+}
