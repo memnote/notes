@@ -1,0 +1,7 @@
+{
+  "title": "Példa szoftech poszt",
+  "subject": "szoftech",
+  "date": "2021-01-18",
+  "description": "Rövid leírás a posztról, nagyjából hasonló hosszúságban mint ez itt.",
+  "thumbnail": "700x400 pixeles kép neve, amit a poszt thumbnail-nek használhat (tömörített jpeg), assetes mappába kell rakni, a nevében a-Z és 0-9 karakterek lehetnek valamint alulvonás/kötőjel"
+}
