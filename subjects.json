@@ -1,0 +1,19 @@
+{
+  "mia": "Mindennapi informatikai alkalmazások",
+  "progalap": "Programozás alapjai",
+  "algraf": "Algoritmusok és gráfok",
+  "hwa": "Hardver alapok",
+  "kalkulus": "Kalkulus",
+  "bevmat": "Bevezető matematika",
+  "opre": "Operációs rendszerek",
+  "valszam": "Valószínűségszámítás",
+  "hau": "Hálózatok alapjai és üzemeltetése",
+  "oop": "Objektumorientált programozás",
+  "fizika": "Kísérleti fizika",
+  "adatkezeles": "Adatkezelés SQL",
+  "ami": "Alkalmazott mesterséges intelligencia",
+  "kodit": "Kódolás és IT biztonság",
+  "szoftech": "Szoftvertechnológia és -technikák",
+  "evip": "Eseményvezérelt és vizuális programozás",
+  "egyeb": "Egyéb"
+}
