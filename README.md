@@ -16,7 +16,7 @@ Természetesen ha valamelyik posztban mondjuk helyesírási hibát, vagy csak ú
 
 # Elnevezési konvenciók
 
-Ha a poszt fájlneve: **2021-01-18-tesztposzt123**, akkor a metadata json neve ami hozzá tartozik legyen: **2021-01-18-tesztposzt123-metadata.json**. Ha thumbnail-t szeretnél a poszthoz, akkor azt az assets/thumbnails mappába kell rakni a következő névvel: **2021-01-18-tesztposzt123-thumbnail.jpg**. Erre a képre a markdown-on belül tudsz **hivatkozni relatív elérésí úttal (../assets/2021-01-18-tesztposzt123-képneve.jpg)**.
+Ha a poszt fájlneve: **2021-01-18-tesztposzt123**, akkor a metadata json neve ami hozzá tartozik legyen: **2021-01-18-tesztposzt123-metadata.json**. Ha thumbnail-t szeretnél a poszthoz, akkor azt az assets/thumbnails mappába kell rakni a következő névvel: **2021-01-18-tesztposzt123-thumbnail.jpg**.
 A poszt neve mindenképpen a feltöltési dátummal kell, hogy kezdődjön!
 Subjectet (tantárgyat) a subjects.json-ben megfogalmazott rövidítésekkel adhatsz meg!
 Képeket beilleszteni a markdown-ba jelenleg csak külső linkről lehet.
