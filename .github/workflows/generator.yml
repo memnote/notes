@@ -25,6 +25,7 @@ jobs:
         run: |
           git config --local user.email "erik1szabo1@gmail.com"
           git config --local user.name "ErikSzabo"
+          git fetch origin master
           git add .
           git commit --allow-empty -m "Auto generated metadata json"
       - name: Push changes
