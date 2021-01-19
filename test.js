@@ -35,24 +35,13 @@ function testMetaDataFileNames() {
   }
 }
 
-function testThumbnailFileNames() {
-  const filenames = fs.readdirSync("./assets/thumbnails");
-  const pattern = /^([0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])-)([a-zA-Z0-9_-]+)(-thumbnail)(\.jpg)$/g;
-  for (filename of filenames) {
-    if (!pattern.test(filename))
-      throw new Error(
-        `Invalid filename: ${filename}! Thumbnail filename should look like this: 2021-01-18-example-thumbnail.jpg`
-      );
-  }
-}
-
 function readMetaFile(name) {
   return JSON.parse(fs.readFileSync(`./metadata/${name}-metadata.json`));
 }
 
 function readPostMeta(name) {
   const data = yml(fs.readFileSync(`./posts/${name}.md`)).data;
-  if (data.date)
+  if (data.date instanceof Date)
     data.date = `${data.date.getFullYear()}-${
       data.date.getMonth() + 1 < 10 ? "0" : ""
     }${data.date.getMonth() + 1}-${
@@ -61,42 +50,55 @@ function readPostMeta(name) {
   return data;
 }
 
-function compareAll(name, metas, posts, thumbnails) {
-  if (!metas.includes(name))
-    throw new Error(`Metadata not found with this name: ${name}`);
-  if (!posts.includes(name))
-    throw new Error(`Post not found with this name: ${name}`);
-  if (!thumbnails.includes(name))
-    throw new Error(
-      `Thumbnail not found with this name: ${name}, Every post should has at least a default shitty thumbnail!`
+function testPostMeta(postMeta, name) {
+  const template = {
+    title: "",
+    date: "",
+    subject: "",
+    description: "",
+  };
+
+  const errMsg = `Invalid post metadata, for post ${name}`;
+
+  if (Object.keys(postMeta).length !== Object.keys(template).length)
+    return errMsg;
+
+  for (let key in template) {
+    if (!postMeta[key]) return errMsg;
+  }
+
+  const dateRegex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/g;
+  if (!dateRegex.test(postMeta.date))
+    return (
+      errMsg +
+      `, date should be in this format: 2021-01-18, got instead: ${postMeta.date}`
     );
+}
+
+function compare(name, postMeta, metas) {
+  if (!metas.includes(name)) return;
   const meta = readMetaFile(name);
-  const postMeta = readPostMeta(name);
   if (!objectEqual(meta, postMeta)) {
-    throw new Error(
-      `Post: ${name} is invalid. Metadata json and Post markdown meta is different!`
-    );
+    return `Post: ${name} is invalid. Metadata json and Post markdown meta is different!`;
   }
 }
 
 // Test file names
 testMetaDataFileNames();
 testPostFileNames();
-testThumbnailFileNames();
 
 // Test for metadata - post - thumbnail pairs
 const metaFiles = loadFileNames("metadata", "-metadata.json");
 const postFiles = loadFileNames("posts", ".md");
-const thumbnailFiles = loadFileNames("assets/thumbnails", "-thumbnail.jpg");
 
-const lengths = [metaFiles.length, postFiles.length, thumbnailFiles.length];
+const errors = [];
 
-if (lengths.some((length) => length !== lengths[0])) {
-  throw new Error(
-    "Every post has to have a post file (markdown), a metadata file (json), and at least a basic thumbnail (jpg)"
-  );
+for (post of postFiles) {
+  const postMeta = readPostMeta(post);
+  const error0 = testPostMeta(postMeta, post);
+  const error = compare(post, postMeta, metaFiles);
+  if (error) errors.push(error);
+  if (error0) errors.push(error0);
 }
 
-for (meta of metaFiles) {
-  compareAll(meta, metaFiles, postFiles, thumbnailFiles);
-}
+if (errors.length > 0) throw new Error(errors.join("\n"));
