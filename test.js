@@ -1,6 +1,8 @@
 const yml = require("gray-matter");
 const fs = require("fs");
 
+const subjects = JSON.parse(fs.readFileSync("./subjects.json"));
+
 function objectEqual(obj1, obj2) {
   if (Object.keys(obj1).length !== Object.keys(obj2).length) return false;
   for (let key in obj1) {
@@ -73,6 +75,9 @@ function testPostMeta(postMeta, name) {
       errMsg +
       `, date should be in this format: 2021-01-18, got instead: ${postMeta.date}`
     );
+
+  if (!Object.keys(subjects).includes(postMeta.subject))
+    return errMsg + `, subject should be a key from subjects.json`;
 }
 
 function compare(name, postMeta, metas) {
