@@ -17,23 +17,25 @@ function loadFileNames(dir, extEnding) {
 
 function testPostFileNames() {
   const filenames = fs.readdirSync("./posts");
-  const pattern = /^([0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])-)([a-zA-Z0-9_-]+)(\.md)$/g;
-  for (filename of filenames) {
-    if (!pattern.test(filename))
+  const pattern = /^([0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])-)([a-zA-Z0-9_-]+)(\.md)$/;
+  for (const filename of filenames) {
+    if (!pattern.test(filename)) {
       throw new Error(
         `Invalid filename: ${filename}! Post filename should look like this: 2021-01-18-example.md`
       );
+    }
   }
 }
 
 function testMetaDataFileNames() {
   const filenames = fs.readdirSync("./metadata");
-  const pattern = /^([0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])-)([a-zA-Z0-9_-]+)(-metadata)(\.json)$/g;
+  const pattern = /^([0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])-)([a-zA-Z0-9_-]+)(-metadata)(\.json)$/;
   for (filename of filenames) {
-    if (!pattern.test(filename))
+    if (!pattern.test(filename)) {
       throw new Error(
         `Invalid filename: ${filename}! Metadata filename should look like this: 2021-01-18-example-metadata.json`
       );
+    }
   }
 }
 
