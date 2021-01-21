@@ -10,13 +10,13 @@ date: 2021-01-21
 A változatlan kódrészeket tegyük egy ősosztályba, a változó/kiterjeszthető részeket pedig ne drótozzuk bele az ősosztály műveleteibe, hanem virtuális és/vagy absztrakt metódusokat használjunk.
 A leszármazott osztályban ezeket a metódusokat fogjuk felüldefiniálni specifikus viselkedéssel.
 
-**Definíció**: Egy műveleten belül algoritmus vázat definiál, és az algoritmus bizonyos lépéseinek implementálását a leszormazott osztályra bízza.
+**Definíció**: Egy műveleten belül algoritmus vázat definiál, és az algoritmus bizonyos lépéseinek implementálását a leszármazott osztályra bízza.
 
 _Na akkor ezt most mégegyszer magyarul, egy kis kódpéldával, hogy érhető legyen._
 
 ## Példa
 
-Szeretnénk csinálni egy fájlbeolvasó osztályt, de nem akarjuk előre beledrótozni, hogy hogyan csináljuk a beolvasást és a fájl feldolgozást. Ki tudja, hogy mi alapján olvasunk be, vagy honnan. Ezen tovább haladva, azt sem tudhatjuk biztosan, hogy a kimeneti formátumot (típust) amit visszaad a metódus, hogy fogjuk előállítani.
+Szeretnénk csinálni egy fájlbeolvasó osztályt, de nem akarjuk előre beledrótozni, hogy hogyan csináljuk a beolvasást és a fájl feldolgozást. Ki tudja, hogy mi alapján olvasunk be, vagy honnan. Ezen tovább haladva, azt sem tudhatjuk biztosan, hogy a kimeneti formátumot (típust), amit visszaad a metódus, hogy fogjuk előállítani.
 
 ```csharp
 // C# példa
@@ -53,7 +53,7 @@ class SuperFastFileReader : FileReader {
     public SuperFastFileReader(string path) : base(path) { }
 
     // Felülírjuk az abstract metódust, és implementáljuk.
-    protected override byte[] Read {
+    protected override byte[] Read() {
         // Ide jöhet az implementáció
     }
 
@@ -72,7 +72,7 @@ Na és ilyen konkrét megvalósításból bármennyit csinálhatunk. Vegyük és
 ### Előnyök
 
 - DRY - Don't Repeat Yourself
-- új viselkedés bevezetéséhez nem kell meglávő kódot módosítani
+- új viselkedés bevezetéséhez nem kell meglévő kódot módosítani
 
 ### Hátrányok
 
