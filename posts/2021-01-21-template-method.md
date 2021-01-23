@@ -76,8 +76,8 @@ Na és ilyen konkrét megvalósításból bármennyit csinálhatunk. Vegyük és
 
 ### Hátrányok
 
-- a program futása közben nem lehet egyszerűen cserélni a viselkedést, ezért rugalmatlan
 - minél több metódus mentén lehet kiterjeszteni az absztrakt őst, annál több keresztkombináció születhet, ami rengeteg áttekinthetetlen osztályt eredményez
+- a program futása közben nem lehet egyszerűen cserélni a viselkedést, ezért rugalmatlan (pontosan a fentebbi hátrány miatt következik is)
 
 ## Következmények
 
