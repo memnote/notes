@@ -1,7 +1,7 @@
 ---
 title: Strategy minta
 subject: szoftech
-description: "A stratgy (vagy behavior) tervezési minta leírása, osztálydiagramja és példák felhasználásra."
+description: "A strategy (vagy behavior) tervezési minta leírása, osztálydiagramja és példák felhasználásra."
 date: 2021-01-22
 ---
 
