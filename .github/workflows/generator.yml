@@ -30,6 +30,6 @@ jobs:
           git config --local user.name "ErikSzabo"
           git fetch origin master
           git add .
-          git commit --allow-empty -m "Auto generated metadata json"
+          git commit -m "Auto generated metadata json"
       - name: Push changes
         run: git push origin master
