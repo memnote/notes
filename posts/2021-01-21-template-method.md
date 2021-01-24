@@ -1,7 +1,7 @@
 ---
 title: Template method
 subject: szoftech
-description: "A template method (létrehozási) tervezési minta elméletben és gyakorlatban."
+description: "A template method tervezési minta elméletben és gyakorlatban."
 date: 2021-01-21
 ---
 
