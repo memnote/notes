@@ -4,46 +4,81 @@
  * tests are passed.
  */
 
-const yml = require("gray-matter");
 const fs = require("fs");
+const yml = require("gray-matter");
 
-function loadFileNames(dir, extEnding) {
-  return fs.readdirSync(`./${dir}`).map((meta) => meta.replace(extEnding, ""));
+function objectEqual(obj1, obj2) {
+  if (Object.keys(obj1).length !== Object.keys(obj2).length) return false;
+  for (let key in obj1) {
+    if (obj1[key] !== obj2[key]) return false;
+  }
+  return true;
 }
 
-function readPostMeta(name) {
-  const data = yml(fs.readFileSync(`./posts/${name}.md`)).data;
-  if (data.date)
-    data.date = `${data.date.getFullYear()}-${
-      data.date.getMonth() + 1 < 10 ? "0" : ""
-    }${data.date.getMonth() + 1}-${
-      data.date.getDate() < 10 ? "0" : ""
-    }${data.date.getDate()}`;
-  return data;
+function mdFormatter(data) {
+  const parsed = yml(data).data;
+  return {
+    ...parsed,
+    date: parsed.date.toISOString().substring(0, 10),
+  };
 }
 
-function findNewPostsWithoutMetaData(metaFiles = [], postFiles = []) {
-  return postFiles.filter((post) => !metaFiles.includes(post));
+async function readdir(path) {
+  return new Promise((resolve, reject) => {
+    fs.readdir(path, (err, files) => {
+      if (err) reject(err);
+      resolve(files);
+    });
+  });
 }
 
-const metaFiles = loadFileNames("metadata", "-metadata.json");
-const postFiles = loadFileNames("posts", ".md");
-
-const newPosts = findNewPostsWithoutMetaData(metaFiles, postFiles);
-
-for (let post of newPosts) {
-  const { title, subject, date, description } = readPostMeta(post);
-  if (!title || !subject || !date || !description) {
-    throw new Error(
-      `Metadata json can't be generated from post: ${post}, because it has invalid meta data.`
+async function loadFiles(directoryPath, endExt, formatter = (data) => data) {
+  const filenames = await readdir(directoryPath);
+  const promises = [];
+  for (let filename of filenames) {
+    promises.push(
+      new Promise((resolve, reject) => {
+        fs.readFile(`${directoryPath}/${filename}`, (err, data) => {
+          if (err) reject(err);
+          resolve({
+            filename: filename.replace(endExt, ""),
+            data: formatter(data.toString()),
+          });
+        });
+      })
     );
   }
-  const json = JSON.stringify({
-    title,
-    subject,
-    date,
-    description,
-  });
 
-  fs.writeFileSync(`./metadata/${post}-metadata.json`, json);
+  const result = await Promise.all(promises);
+  const map = {};
+  result.forEach((res) => (map[res.filename] = res.data));
+  return map;
 }
+
+async function main() {
+  const posts = await loadFiles("./posts", ".md", mdFormatter);
+  const metas = await loadFiles("./metadata", "-metadata.json", JSON.parse);
+
+  const promises = [];
+
+  for (let filename in posts) {
+    if (!metas[filename] || !objectEqual(metas[filename], posts[filename])) {
+      promises.push(
+        new Promise((resolve, reject) => {
+          fs.writeFile(
+            `./metadata/${filename}-metadata.json`,
+            JSON.stringify(posts[filename]),
+            (err) => {
+              if (err) reject(err);
+              resolve();
+            }
+          );
+        })
+      );
+    }
+  }
+
+  await Promise.all(promises);
+}
+
+main();
