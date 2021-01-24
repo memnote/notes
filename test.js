@@ -3,14 +3,6 @@ const fs = require("fs");
 
 const subjects = JSON.parse(fs.readFileSync("./subjects.json"));
 
-function objectEqual(obj1, obj2) {
-  if (Object.keys(obj1).length !== Object.keys(obj2).length) return false;
-  for (let key in obj1) {
-    if (obj1[key] !== obj2[key]) return false;
-  }
-  return true;
-}
-
 function loadFileNames(dir, extEnding) {
   return fs.readdirSync(`./${dir}`).map((meta) => meta.replace(extEnding, ""));
 }
@@ -39,18 +31,10 @@ function testMetaDataFileNames() {
   }
 }
 
-function readMetaFile(name) {
-  return JSON.parse(fs.readFileSync(`./metadata/${name}-metadata.json`));
-}
-
 function readPostMeta(name) {
   const data = yml(fs.readFileSync(`./posts/${name}.md`)).data;
   if (data.date instanceof Date)
-    data.date = `${data.date.getFullYear()}-${
-      data.date.getMonth() + 1 < 10 ? "0" : ""
-    }${data.date.getMonth() + 1}-${
-      data.date.getDate() < 10 ? "0" : ""
-    }${data.date.getDate()}`;
+    data.date = data.date.toISOString().substring(0, 10);
   return data;
 }
 
@@ -82,30 +66,19 @@ function testPostMeta(postMeta, name) {
     return errMsg + `, subject should be a key from subjects.json`;
 }
 
-function compare(name, postMeta, metas) {
-  if (!metas.includes(name)) return;
-  const meta = readMetaFile(name);
-  if (!objectEqual(meta, postMeta)) {
-    return `Post: ${name} is invalid. Metadata json and Post markdown meta is different!`;
-  }
-}
-
 // Test file names
 testMetaDataFileNames();
 testPostFileNames();
 
-// Test for metadata - post - thumbnail pairs
-const metaFiles = loadFileNames("metadata", "-metadata.json");
+// Test post metas in markdown
 const postFiles = loadFileNames("posts", ".md");
 
 const errors = [];
 
 for (post of postFiles) {
   const postMeta = readPostMeta(post);
-  const error0 = testPostMeta(postMeta, post);
-  const error = compare(post, postMeta, metaFiles);
+  const error = testPostMeta(postMeta, post);
   if (error) errors.push(error);
-  if (error0) errors.push(error0);
 }
 
 if (errors.length > 0) throw new Error(errors.join("\n"));
