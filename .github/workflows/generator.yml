@@ -24,12 +24,9 @@ jobs:
         run: npm install
       - name: Generate metadata jsons for posts that does not have
         run: npm run generate
-      - name: Commit files
-        run: |
-          git config --local user.email "erik1szabo1@gmail.com"
-          git config --local user.name "ErikSzabo"
-          git fetch origin master
-          git add .
-          git commit -m "Auto generated metadata json"
-      - name: Push changes
-        run: git push origin master
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: ErikSzabo
+          author_email: erik1szabo1@gmail.com
+          message: "Auto generated metadata json"
