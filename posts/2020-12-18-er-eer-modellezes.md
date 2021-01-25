@@ -19,7 +19,7 @@ date: 2020-12-18
 
 **Attribútum**: Egy adott egyednek valamilyen tulajdonsága. (előző példa alapján: Fütty Imre (név) 18 (kor))
 
-**Elsődleges kulcs**: Az elsődleges kulcs, egy egyedet az egyedhalmazban **egyértelműen azonosít**. (erre az emberek egyedhalmaznál jó példa pl. a személyi szám, mivel az minden embernek más, tehát egyértelműen azonosít egy ember egyedet)
+**Elsődleges kulcs**: Az elsődleges kulcs, egy egyedet az egyedhalmazban **egyértelműen azonosít**. (erre az emberek egyedhalmaznál jó példa pl. a személyi szám, mivel az minden embernek más, tehát egyértelműen azonosít egy ember egyedet) Ennek minden egyedre egyedinek kell lennie!
 
 Az **ER** modellezésnél az **Egyedhalmazok** között csak **kapcsolattípus**ról beszélhetünk, **ne keverjük ezt a sima kapcsolattal!** A sima kapcsolat (vagy másnéven kapcsolatpéldány) sima egyedek között van, és nem egyedhalmazok között! Ebben a modellezésben azonban egyedhalmazokat rajzolunk.
 
