@@ -11,11 +11,11 @@ date: 2020-12-18
 
 # Alapműveletek
 
-### Decart szorzat
+## Decart szorzat
 
 2 vagy több reláció minden elemét (sorát) össszepárosítja egymással (mintha egymás mellé rakná őket), a végeredményben így az összes tábla (reláció) oszlopa szerepel(, ha ezt SQL-re vetítjük ki). Erről részletesebben a [Relációs adamodell](https://memnote.net/posts/2020-12-18-relacios-adatmodell) jegyzet elején olvashatsz. (Erősen ajánlott érteni a decart szorzatot mielőtt ebbe belekezdesz.)
 
-### Unio
+## Unio
 
 **Jele: U**
 
@@ -38,7 +38,7 @@ Veszünk 2 vagy több relációt, majd unio művelettel összekapcsolva őket, a
 |           | 987654               | tzu    |
 |           | 654321               | qwe    |
 
-### Különbség
+## Különbség
 
 **Jele: \\**
 
@@ -59,7 +59,7 @@ Teljesen ugyanaz az értelme, mint amit a halmazoknál is csinálunk. A\B = A mi
 | ---------- | -------------------- | ------ |
 |            | 456789               | abc    |
 
-### Szelekció
+## Szelekció
 
 **Jele: [σ](https://s3.amazonaws.com/static.graphemica.com/glyphs/i500s/000/011/055/original/03C3-500x500.png?1275329355) (sigma)**
 
@@ -75,7 +75,7 @@ A sigma alsó indexében megadhatunk valamilyen logikai szűrést, és az eredm�
 | ---------------------- | -------------------- | --- |
 |                        | 456789               | 18  |
 
-### Projekció (vagy vetítés)
+## Projekció (vagy vetítés)
 
 **Jele: [π](<https://hu.wikipedia.org/wiki/Pi_(film)#/media/F%C3%A1jl:Pi-symbol.svg>) (pi)**
 
@@ -95,7 +95,7 @@ Lényege, hogy sokszor a relációból csak bizonyos oszlopokat szeretnénk. Mon
 
 Ezek olyan műveletek, amik a fenti alapműveletekből állnak össze, csak éppen kaptak egy egyszerűbb jelölést/megfogalmazást, ahelyett, hogy ki kéne írnunk az alapműveletek teljes kombinációját.
 
-### Természetes illesztés
+## Természetes illesztés
 
 **Jele: ⋈ (theta)**
 
@@ -123,7 +123,7 @@ Alapműveletekkel felírva ez a természetes illesztés így nézne ki:
 
 Itt az **x** a decart szorzatot jelöli.
 
-### Theta join
+## Theta join
 
 **Jele ⋈~ (theta)**
 
