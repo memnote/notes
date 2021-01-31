@@ -44,7 +44,7 @@ CREATE TABLE vasarlo (
 );
 
 -- utólag
-ALTER TABLE vasarlo ADD CONSTRAINT uq_nev UNIQUE;
+ALTER TABLE vasarlo ADD CONSTRAINT uq_nev UNIQUE(nev);
 ```
 
 ## PRIMARY KEY
