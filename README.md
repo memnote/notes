@@ -58,3 +58,10 @@ Ha áthúzott szöveget szeretnél:
 ```
 ~~Áthúzott szöveg~~
 ```
+
+Alsó és felső index használata:
+
+```html
+Valami<sub>alsó index</sub>Normális
+Valami<sup>felső index</sup>Normális
+```
