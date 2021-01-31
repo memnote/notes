@@ -34,7 +34,7 @@ Ezt használjuk az adatmodell kialakításásra, vagyis táblák létrehozásár
 
 ```sql
 CREATE TABLE vasarlo (
-    nev VARCHAR2(200),
+    nev: VARCHAR2(200),
     email: VARCHAR2(200),
     kor: NUMBER,
     regisztralt: DATE
@@ -47,7 +47,7 @@ Létrehozzuk a táblát az alábbi oszlopokkal: **nev, email, kor, regisztralt**
 
 ```sql
 CREATE TABLE vasarlo (
-    nev VARCHAR2(200) NOT NULL,
+    nev: VARCHAR2(200) NOT NULL,
     email: VARCHAR2(200),
     kor: NUMBER,
     regisztralt: DATE,
@@ -61,7 +61,7 @@ Itt annyi a változás, hogy a **nev** mostmár nem lehet NULL érték, vagyis a
 
 ```sql
 CREATE TABLE vasarlo (
-    nev VARCHAR2(200) NOT NULL,
+    nev: VARCHAR2(200) NOT NULL,
     email: VARCHAR2(200),
     kor: NUMBER,
     regisztralt: DATE,
