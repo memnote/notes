@@ -141,9 +141,11 @@ Tényleges bittovábbítás sebesség forrás (küldő) és nyelő (cél) közö
 - **Átlagos**: egy hosszabb időtartamra vonatkoztatva
 
 ![atbocsajtokepesseg pelda 1](https://i.ibb.co/Bzmh1dm/atbocsajtas-1.png)
+
 Rs link átbocsájtó képessége a végpontok közötti átbocsájtó képesség, mivel az a kisebb. Hiába lenne utána nagyobb, ha addig csak lassan tud eljutni.
 
 ![atbocsajtokepesseg pelda 2](https://i.ibb.co/Ycxv9Kz/atbocsajtas-2.png)
+
 Rc link átbocsájtó képessége a végpontok közötti átbocsájtó képesség. Hiába nagy Rs, attól még Rc kicsi, így ugyanúgy többet kell várni.
 
 Azt a linket ami például a fenti példában korlátozta az átbocsátóképességet, szűk keresztmetszetű linknek nevezzük.
