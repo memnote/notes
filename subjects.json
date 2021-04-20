@@ -1,5 +1,4 @@
 {
-  "mia": "Mindennapi informatikai alkalmazások",
   "progalap": "Programozás alapjai",
   "algraf": "Algoritmusok és gráfok",
   "hwa": "Hardver alapok",
@@ -10,6 +9,6 @@
   "ami": "Alkalmazott mesterséges intelligencia",
   "kodit": "Kódolás és IT biztonság",
   "szoftech": "Szoftvertechnológia és -technikák",
-  "evip": "Eseményvezérelt és vizuális programozás",
-  "egyeb": "Egyéb"
+  "kliens": "Kliensalkalmazások",
+  "hatter": "Háttéralkalmazások"
 }
